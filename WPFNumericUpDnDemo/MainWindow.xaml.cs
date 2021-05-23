@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFNumericUpDn;
+using WPFNumericUpDown;
 
 namespace WPFNumericUpDnDemo
 {
@@ -29,7 +29,7 @@ namespace WPFNumericUpDnDemo
 
             floatControl.DATA = new FloatNumber(-4.5f, -25, 34.5f,0.5f,2);
 
-            doubleControl.DATA = new DoubleNumber(0, -23.5, 100.00083, 2.5,4);
+            doubleControl.DATA = new DoubleNumber(10, -23.5, 100.00083, 2.5,4);
             
         }
     }

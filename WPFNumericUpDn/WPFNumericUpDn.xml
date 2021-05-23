@@ -1,0 +1,413 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WPFNumericUpDn</name>
+    </assembly>
+    <members>
+        <member name="T:WPFNumericUpDn.DoubleNumericControl">
+            <summary>
+            Class represent a numeric up down control for double vlaue
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.DoubleNumericControl.#ctor">
+            <summary>
+            default constructor for double numbder with 4 decimals (default value 0)
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.FloatNumericControl">
+            <summary>
+            Class represent a numeric up down control for float vlaue 
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.FloatNumericControl.#ctor">
+            <summary>
+            construct a non-constrain float numbder with 2 decimals (default value 0)
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.GenericNumericControl`1">
+            <summary>
+            class represent generic number. any other type must be sub-class of the this class
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumericControl`1._regexPattern">
+            <summary>
+            return the regex pattern provided in data source
+            </summary>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumericControl`1.DATA">
+            <summary>
+            data source for the textbox 
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumericControl`1.DATAProperty">
+            <summary>
+            dependency property for binding
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumericControl`1.dataBinding">
+            <summary>
+            binds the model to UI.
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumericControl`1.#ctor">
+            <summary>
+            empty constructor is require for XML code
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumericControl`1.#ctor(WPFNumericUpDn.GenericNumber{`0})">
+            <summary>
+            constructor can be used from code.
+            </summary>
+            <param name="data">data to be binded with text box</param>
+        </member>
+        <member name="T:WPFNumericUpDn.IntegerNumericControl">
+            <summary>
+            class represent the numeric up down control for integer type
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.IntegerNumericControl.#ctor">
+            <summary>
+            represnet the integer number without constrain (default value 0)
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.NumbericControl">
+            <summary>
+            Interaction logic for UserControl1.xaml
+            </summary>
+            <summary>
+            NumbericControl
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.NumbericControl.#ctor">
+            <summary>
+            main constructor
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.NumbericControl.Timer_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            run the current command every 100 milliseconds
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WPFNumericUpDn.NumbericControl.incBTN_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            sets the command and starts the timer 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WPFNumericUpDn.NumbericControl.incBTN_MouseLeftButtonUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            stops the timer
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WPFNumericUpDn.NumbericControl.textBox_PreviewTextInput(System.Object,System.Windows.Input.TextCompositionEventArgs)">
+            <summary>
+            check if the content of the text box is valid. only if valid then it is pushed
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WPFNumericUpDn.NumbericControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.InputBindingsManager">
+            <summary>
+            privides custom behaviour for the text box and  used to update the source when user press the enter
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.InputBindingsManager.UpdatePropertySourceWhenEnterPressedProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.InputBindingsManager.SetUpdatePropertySourceWhenEnterPressed(System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+             Update Property Source When Enter Pressed
+            </summary>
+            <param name="dp"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:WPFNumericUpDn.InputBindingsManager.GetUpdatePropertySourceWhenEnterPressed(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <param name="dp"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WPFNumericUpDn.DoubleNumber">
+            <summary>
+            this class represent a formatted double number with constrains
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.DoubleNumber.#ctor(System.Double,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            construct a constrained double number
+            </summary>
+            <param name="value"><inheritdoc/></param>
+            <param name="min"><inheritdoc/> </param>
+            <param name="max"><inheritdoc/></param>
+            <param name="inc"><inheritdoc/></param>
+            <param name="decimals"><inheritdoc/></param>
+        </member>
+        <member name="P:WPFNumericUpDn.DoubleNumber._regex">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.DoubleNumber.ConvertToValue(System.Double@)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.DoubleNumber.decrement">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.DoubleNumber.increment">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WPFNumericUpDn.DoubleNumber.FormatString">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.FloatNumber">
+            <summary>
+            class represnet a constrained float number
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.FloatNumber.#ctor(System.Single,System.Single,System.Single,System.Single,System.Int32)">
+            <summary>
+            construc a constrain Float number
+            </summary>
+            <param name="value"><inheritdoc/></param>
+            <param name="min"><inheritdoc/></param>
+            <param name="max"><inheritdoc/></param>
+            <param name="inc"><inheritdoc/></param>
+            <param name="decimals"><inheritdoc/></param>
+        </member>
+        <member name="P:WPFNumericUpDn.FloatNumber._regex">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.FloatNumber.ConvertToValue(System.Single@)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.FloatNumber.decrement">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.FloatNumber.increment">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WPFNumericUpDn.FloatNumber.FormatString">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.GenericNumber`1">
+            <summary>
+            class provide basic functionality for different number classes
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.#ctor(`0,`0,`0,`0,System.Int32)">
+            <summary>
+            construct a GenericNumber class based on the Type (T)
+            </summary>
+            <param name="value">current value</param>
+            <param name="min">minimum value</param>
+            <param name="max">maximum value</param>
+            <param name="inc">increment value used to increment or decrement the current value</param>
+            <param name="decimals">number of deciams shown on the text box</param>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1._decimals">
+            <summary>
+            number of decimals shown in the textbox
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1._value">
+            <summary>
+            the current value 
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1._min">
+            <summary>
+            minimum value
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1._max">
+            <summary>
+            maximum value
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1._increment">
+            <summary>
+            value used to increment or decrement the current value
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1._stringValue">
+            <summary>
+            the string value corressponding to the current value 
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.increment">
+            <summary>
+            returns <c>_value + _increment</c>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.decrement">
+            <summary>
+            returns <c>_value - _increment</c>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumber`1._regex">
+            <summary>
+            provides the regex pattern for filtering numerical value based on the type (T) and lower bound (_min)
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.Increment">
+            <summary>
+            increment the current value by adding the <c>_increment</c> value to the current value
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.Decrement">
+            <summary>
+            decrement the current value by subtracting the <c>_increment</c> value from the current value
+            </summary>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumber`1.Value">
+            <summary>
+            get and sets the current value
+            </summary>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumber`1.StringValue">
+            <summary>
+            The string value shown in the text box .
+            this property fires the <c>NotifyPropertyChanged</c>
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.ConvertToString">
+            <summary>
+            convert the current value to the string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.GenericNumber`1.ConvertToValue(`0@)">
+            <summary>
+            override this method to parse the current string to type (T)
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumber`1.FormatString">
+            <summary>
+            override to provide the format string used to format the string in the text box
+            </summary>
+        </member>
+        <member name="E:WPFNumericUpDn.GenericNumber`1.PropertyChanged">
+            <summary>
+            Property changed event
+            </summary>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumber`1.IncrementCommand">
+            <summary>
+            create an instance of the <c>IncrementCommand</c> for the increment button in UI 
+            </summary>
+        </member>
+        <member name="P:WPFNumericUpDn.GenericNumber`1.DecrementCommand">
+            <summary>
+            create an instance of the <c>DecrementCommand</c> for the increment button in UI 
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1.signedDecimal">
+            <summary>
+            filters the signed decimals
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1.unSignedDecimal">
+            <summary>
+            filters the unsigned decimals
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1.signedInteger">
+            <summary>
+            filters the signed integers
+            </summary>
+        </member>
+        <member name="F:WPFNumericUpDn.GenericNumber`1.unSignedInteger">
+            <summary>
+            filters the unsigned integers
+            </summary>
+        </member>
+        <member name="T:WPFNumericUpDn.IntegerNumber">
+            <summary>
+            a class represent a constrained integer number 
+            </summary>
+        </member>
+        <member name="M:WPFNumericUpDn.IntegerNumber.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            construct an contrsianed integer
+            </summary>
+            <param name="value"><inheritdoc/></param>
+            <param name="min"><inheritdoc/></param>
+            <param name="max"><inheritdoc/></param>
+            <param name="inc"><inheritdoc/></param>
+        </member>
+        <member name="M:WPFNumericUpDn.IntegerNumber.increment">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.IntegerNumber.decrement">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WPFNumericUpDn.IntegerNumber.ConvertToValue(System.Int32@)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WPFNumericUpDn.IntegerNumber._regex">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="P:WPFNumericUpDn.IntegerNumber.FormatString">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+    </members>
+</doc>

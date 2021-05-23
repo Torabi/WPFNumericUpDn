@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFNumericUpDnDemo"
-        xmlns:uc="clr-namespace:WPFNumericUpDn;assembly=WPFNumericUpDn"
+        xmlns:uc="clr-namespace:WPFNumericUpDown;assembly=WPFNumericUpDown"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Label>Integer value</Label>
-            <uc:IntegerNumericControl x:Name="integerControl" Height="30" Margin="2" VerticalAlignment="Top"></uc:IntegerNumericControl>
+            <uc:IntegerNumericControl x:Name="integerControl" Height="30" Margin="2" VerticalAlignment="Top" FontSize="24"></uc:IntegerNumericControl>
         </StackPanel>
         <StackPanel Grid.Column="1">
               <Label>Float value</Label>

@@ -8,14 +8,34 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Data;
+/*
+     MIT License
+    Copyright (c) 2021 ALI TORABI (ali@parametriczoo.com)
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+    */
 namespace WPFNumericUpDn
 {
     /// <summary>
     /// class provide basic functionality for different number classes
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class GenericNumber<T> : INotifyPropertyChanged where T : struct, IFormattable, IComparable<T>
+    public class GenericNumber<T> : INotifyPropertyChanged where T : struct, IFormattable, IComparable<T>
     {
         /// <summary>
         /// construct a GenericNumber class based on the Type (T)
@@ -25,7 +45,7 @@ namespace WPFNumericUpDn
         /// <param name="max">maximum value</param>
         /// <param name="inc">increment value used to increment or decrement the current value</param>
         /// <param name="decimals">number of deciams shown on the text box</param>
-        protected GenericNumber (T value,T min, T max,T inc, int decimals)
+        public GenericNumber (T value,T min, T max,T inc, int decimals)
         {
             
             _min = min;
@@ -59,20 +79,110 @@ namespace WPFNumericUpDn
         /// the string value corressponding to the current value 
         /// </summary>
         internal string _stringValue;
+
+        #region Helper methods 
+
+        int toInt(T val)
+        {
+            return (int)Convert.ChangeType(val, typeof(int));
+        }
+        float toFloat(T val)
+        {
+            return (float)Convert.ChangeType(val, typeof(float));
+        }
+        double toDouble(T val)
+        {
+            return (double)Convert.ChangeType(val, typeof(double));
+        }
+        T toT(int val)
+        {
+            return (T)Convert.ChangeType(val, typeof(int));
+        }
+        T toT(float val)
+        {
+            return (T)Convert.ChangeType(val, typeof(float));
+        }
+        T toT(double val)
+        {
+            return (T)Convert.ChangeType(val, typeof(double));
+        }
+        #endregion
+
+
         /// <summary>
         /// returns <c>_value + _increment</c>
         /// </summary>
         /// <returns></returns>
-        internal abstract T increment();
+        internal virtual T increment()
+        {
+            if (typeof(T).Equals(typeof(int)))
+            {
+                return toT(toInt(_value) + toInt(_increment));
+            }
+            else if (typeof(T).Equals(typeof(float)))
+            {
+                return toT(toFloat(_value) + toFloat(_increment));
+            }
+            else if (typeof(T).Equals(typeof(double)))
+            {
+                return toT(toDouble(_value) + toDouble(_increment));
+            }
+            else
+            {
+                throw new Exception("T expected int,float and double");
+            }
+        }
+
+        
+
         /// <summary>
         /// returns <c>_value - _increment</c>
         /// </summary>
         /// <returns></returns>
-        internal abstract T decrement();
+        internal virtual T decrement()
+        {
+            if (typeof(T).Equals(typeof(int)))
+            {
+                return toT(toInt(_value) - toInt(_increment));                
+            }
+            else if (typeof(T).Equals(typeof(float)))
+            {
+                return toT(toFloat(_value) - toFloat(_increment));
+            }
+            else if (typeof(T).Equals(typeof(double)))
+            {
+                return toT(toDouble(_value) - toDouble(_increment));
+            }
+            else
+            {
+                throw new Exception("T expected int,float and double");
+            }
+        }
         /// <summary>
         /// provides the regex pattern for filtering numerical value based on the type (T) and lower bound (_min)
         /// </summary>
-        internal abstract Regex _regex { get; }
+        internal virtual Regex _regex
+        {
+            get {
+                if (typeof(T).Equals(typeof(int)))
+                {
+                    return (toInt(_min) < 0) ? signedInteger : unSignedInteger;
+                }
+                else if (typeof(T).Equals(typeof(float)))
+                {
+                    return (toFloat(_min) < 0) ? signedDecimal : unSignedDecimal;
+                }
+                else if (typeof(T).Equals(typeof(double)))
+                {
+                    return (toDouble(_min) < 0) ? signedDecimal : unSignedDecimal;
+                }
+                else
+                {
+                    return signedDecimal;
+                }
+
+            }
+        }
         /// <summary>
         /// increment the current value by adding the <c>_increment</c> value to the current value
         /// </summary>
@@ -165,13 +275,58 @@ namespace WPFNumericUpDn
         /// <summary>
         /// override this method to parse the current string to type (T)
         /// </summary>
-        /// <param name="result"></param>
+        /// <param name="val"></param>
         /// <returns></returns>
-        internal abstract bool ConvertToValue(out T result);
+        internal virtual bool ConvertToValue(out T val)
+        {
+            bool result = false;
+            if (typeof(T).Equals(typeof(int)))
+            {
+                result= int.TryParse(_stringValue, out int x);
+                val = toT(x);
+            }
+            else if (typeof(T).Equals(typeof(float)))
+            {
+                result = float.TryParse(_stringValue, out float x);
+                val = toT(x);
+            }
+            else if (typeof(T).Equals(typeof(double)))
+            {
+                result = double.TryParse(_stringValue, out double x);
+                val = toT(x);
+            }
+            else
+            {
+                throw new Exception("T expected int,float and double");
+            }
+            return result;
+        }
         /// <summary>
         /// override to provide the format string used to format the string in the text box
         /// </summary>
-        internal abstract string FormatString { get; }
+        internal virtual string FormatString
+        {
+            get
+            {
+                if (typeof(T).Equals(typeof(int)))
+                {
+                    return "";
+                }
+                else if (typeof(T).Equals(typeof(float)))
+                {
+                    return $"F{_decimals}";
+                }
+                else if (typeof(T).Equals(typeof(double)))
+                {
+                    return $"N{_decimals}";
+                }
+                else
+                {
+                    throw new Exception("T expected int,float and double");
+                }
+            }
+
+        }
         /// <summary>
         /// Property changed event
         /// </summary>
