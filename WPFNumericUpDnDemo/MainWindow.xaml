@@ -1,0 +1,34 @@
+﻿<Window x:Class="WPFNumericUpDnDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFNumericUpDnDemo"
+        xmlns:uc="clr-namespace:WPFNumericUpDn;assembly=WPFNumericUpDn"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label>Integer value</Label>
+            <uc:IntegerNumericControl x:Name="integerControl" Height="30" Margin="2" VerticalAlignment="Top"></uc:IntegerNumericControl>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+              <Label>Float value</Label>
+              <uc:FloatNumericControl x:Name="floatControl" Grid.Column="1"  Height="30" Margin="2"></uc:FloatNumericControl>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label>Double value</Label>
+            <uc:DoubleNumericControl x:Name="doubleControl" Grid.Column="2" Height="30" Margin="2"></uc:DoubleNumericControl>
+        </StackPanel>
+        
+      
+        
+    </Grid>
+</Window>
