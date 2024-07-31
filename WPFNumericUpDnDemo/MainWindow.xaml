@@ -17,18 +17,15 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Label>Integer value</Label>
-            <uc:IntegerNumericControl x:Name="integerControl" Height="30" Margin="2" VerticalAlignment="Top" FontSize="24"></uc:IntegerNumericControl>
+            <uc:IntegerNumericControl x:Name="integerControl" Height="30" Margin="2" VerticalAlignment="Top" Decimals="1" Maximum="50" Minimum="-50" Inc="2"></uc:IntegerNumericControl>
         </StackPanel>
         <StackPanel Grid.Column="1">
               <Label>Float value</Label>
-              <uc:FloatNumericControl x:Name="floatControl" Grid.Column="1"  Height="30" Margin="2"></uc:FloatNumericControl>
+              <uc:DecimalNumericControl x:Name="floatControl" Grid.Column="1"  Height="30" Margin="2" Minimum="-10" Maximum="10" Suffix="mm" Decimals="3" Inc="0.1"></uc:DecimalNumericControl>
         </StackPanel>
         <StackPanel Grid.Column="2">
             <Label>Double value</Label>
-            <uc:DoubleNumericControl x:Name="doubleControl" Grid.Column="2" Height="30" Margin="2"></uc:DoubleNumericControl>
+            <uc:DoubleNumericControl x:Name="doubleControl" Grid.Column="2" Height="30" Margin="2" Inc="0.1" Decimals="5"></uc:DoubleNumericControl>
         </StackPanel>
-        
-      
-        
     </Grid>
 </Window>
